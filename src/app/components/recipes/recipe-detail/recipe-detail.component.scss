@@ -1,0 +1,21 @@
+:host {
+  .recipe-detail {
+    &__img {
+      max-height: 400px;
+    }
+
+    &__description {
+      margin-top: 20px;
+    }
+
+    &__ingredients {
+      margin: 10px 0;
+    }
+  }
+
+  .dropdown-menu {
+    li > a {
+      cursor: pointer;
+    }
+  }
+}

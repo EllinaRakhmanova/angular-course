@@ -1,0 +1,16 @@
+:host {
+  .shopping-edit {
+    padding: 10px 0;
+    &__buttons {
+      margin-top: 10px;
+      button {
+        &:not(:first-child) {
+          margin: 0 5px;
+        }
+        &:first-child {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
