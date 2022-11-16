@@ -1,9 +1,10 @@
-import { EventEmitter } from "@angular/core";
+import { Subject } from "rxjs";
 
 import { IngredientModal } from "../../shared/indredient.modal";
 
 export class ShoppingListService {
-  ingredientsChanged = new EventEmitter<IngredientModal[]>();
+  ingredientsChanged = new Subject<IngredientModal[]>();
+  startedEditing = new Subject<number>();
 
   private ingredients: IngredientModal[] = [
     new IngredientModal('Apples', 5),
@@ -15,13 +16,31 @@ export class ShoppingListService {
     return this.ingredients.slice();
   }
 
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+
   addIngredient(ingredient: IngredientModal) {
     this.ingredients.push(ingredient);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.sliceIngredients();
+  }
+
+  updateIngredient(index: number, newIngredient: IngredientModal) {
+    this.ingredients[index] = newIngredient;
+    this.sliceIngredients();
+  }
+
+  deleteIngredient(index: number) {
+    this.ingredients.splice(index, 1);
+    this.sliceIngredients();
   }
 
   addIngredients(ingredients: IngredientModal[]) {
     this.ingredients.push(...ingredients);
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.sliceIngredients();
+  }
+
+  sliceIngredients() {
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 }

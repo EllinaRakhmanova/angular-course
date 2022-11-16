@@ -1,0 +1,9 @@
+:host {
+  .recipe-edit {
+    &__buttons {
+      button:nth-child(2) {
+        margin-left: 10px;
+      }
+    }
+  }
+}
