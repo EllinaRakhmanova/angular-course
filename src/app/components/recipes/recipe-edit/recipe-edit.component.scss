@@ -5,5 +5,13 @@
         margin-left: 10px;
       }
     }
+
+    &__ingredient-item {
+      margin: 5px 0;
+    }
+  }
+
+  input.ng-invalid, textarea.ng-invalid {
+    border: 1px solid #913131;
   }
 }
