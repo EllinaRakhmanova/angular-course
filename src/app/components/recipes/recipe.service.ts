@@ -1,4 +1,5 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
 import { RecipeModal } from "./recipe.modal";
 import { IngredientModal } from "../../shared/indredient.modal";
@@ -7,7 +8,7 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
 @Injectable()
 export class RecipeService {
-  recipeSelected = new EventEmitter<RecipeModal>();
+  recipeChanged = new Subject<RecipeModal[]>();
 
   private recipes: RecipeModal[] = [
     new RecipeModal(
@@ -82,5 +83,24 @@ export class RecipeService {
 
   addToShoppingList(ingredients: IngredientModal[]) {
     this.shoppingListService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: RecipeModal) {
+    this.recipes.push(recipe);
+    this.sliceRecipe();
+  }
+
+  updateRecipe(index: number, newRecipe: RecipeModal) {
+    this.recipes[index] = newRecipe;
+    this.sliceRecipe();
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.sliceRecipe();
+  }
+
+  sliceRecipe() {
+    this.recipeChanged.next(this.recipes.slice());
   }
 }
