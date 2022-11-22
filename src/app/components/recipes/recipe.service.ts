@@ -70,7 +70,13 @@ export class RecipeService {
     ),
   ];
 
-  constructor(private shoppingListService: ShoppingListService) {
+  // private recipes: RecipeModal[] = [];
+
+  constructor(private shoppingListService: ShoppingListService) { }
+
+  setRecipes(recipes: RecipeModal[]) {
+    this.recipes = recipes;
+    this.sliceRecipe();
   }
 
   getRecipes() {
