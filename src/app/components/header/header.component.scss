@@ -1,4 +1,8 @@
 :host {
+  .nav > li {
+    cursor: pointer;
+  }
+
   .dropdown-menu > li {
     cursor: pointer;
   }
