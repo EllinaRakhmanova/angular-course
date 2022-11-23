@@ -1,0 +1,16 @@
+:host {
+  .auth {
+    &__spinner {
+      height: 35vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+  }
+}
